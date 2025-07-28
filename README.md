@@ -6,35 +6,39 @@ This script is a multithreaded port scanner written in Python. It uses a default
 ## Usage/Example
 
 ```
-% python3 port-scanner.py -h
-
-usage: port-scanner.py [-h] [-t THREADS] [-p PORTS] target
+% python3 port-scanner.py -h         
+usage: port-scanner.py [-h] [-t THREADS] [-p PORTS] [--udp] [-o OUTPUT] target [target ...]
 
 positional arguments:
-  target                target IP address
+  target                target IP address(es)
 
 optional arguments:
-  -h, --help                        show this help message and exit
-  -t THREADS, --threads THREADS     number of threads to use
-  -p PORTS, --ports PORTS           port range to scan (e.g., 1-65535)
+  -h, --help            show this help message and exit
+  -t THREADS, --threads THREADS
+                        number of threads to use
+  -p PORTS, --ports PORTS
+                        port range to scan (e.g., 1-65535)
+  --udp                 scan UDP ports
+  -o OUTPUT, --output OUTPUT
+                        output file to save results
 ```
 
 ```
 % python3 port-scanner.py 192.168.1.1
 
-Port 22 is open!
-Port 23 is open!
-Port 80 is open!
-Port 443 is open!
-Open ports are: [22, 23, 80, 443]
+Port 22 is open! Service: ssh
+Port 23 is open! Service: telnet
+Port 80 is open! Service: http
+Port 443 is open! Service: https
+Open ports for 192.168.1.1 are: [(22, 'ssh'), (23, 'telnet'), (80, 'http'), (443, 'https')]
 ```
 
 ## Todo
 
-- [ ] Scan UDP ports, currently only TCP.
+- [x] Scan UDP ports, currently only TCP.
 
-- [ ] Include additional output information like the service running on the open port.
+- [x] Include additional output information like the service running on the open port.
 
-- [ ] Allow scanning of multiple IP addresses.
+- [x] Allow scanning of multiple IP addresses.
 
-- [ ] Add an option to save the scan results to a file (e.g. `--output results.txt`)
+- [x] Add an option to save the scan results to a file (e.g. `--output results.txt`).
